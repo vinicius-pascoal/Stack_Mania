@@ -15,7 +15,7 @@ class StackTowerV3App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Torre de Blocos V3',
+      title: 'Torre de Blocos',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -689,35 +689,12 @@ class _StackTowerHomePageState extends State<StackTowerHomePage>
                           ),
                           const SizedBox(height: 18),
                           const Text(
-                            'Torre de Blocos V3',
+                            'Torre de Blocos',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 34,
                               fontWeight: FontWeight.w900,
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Agora com corte caindo animado e câmera acompanhando a torre até o topo.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white.withOpacity(0.72),
-                              height: 1.4,
-                            ),
-                          ),
-                          const SizedBox(height: 18),
-                          Wrap(
-                            alignment: WrapAlignment.center,
-                            spacing: 10,
-                            runSpacing: 10,
-                            children: [
-                              _menuTag('Menu inicial'),
-                              _menuTag('Queda animada'),
-                              _menuTag('Perfect combo'),
-                              _menuTag('Peça cortada caindo'),
-                              _menuTag('Câmera dinâmica'),
-                            ],
                           ),
                           const SizedBox(height: 22),
                           SizedBox(
@@ -991,6 +968,30 @@ class _StackTowerHomePageState extends State<StackTowerHomePage>
                                       child: _buildBlock(
                                         width: _placedBlocks[i].width,
                                         color: _placedBlocks[i].color,
+                                      ),
+                                    ),
+
+                                  if (_boardReady && !_gameOver && !_isDropping)
+                                    Positioned(
+                                      left: _movingX,
+                                      top: _screenYForWorldTop(
+                                        _worldTopForLevel(_placedBlocks.length),
+                                      ),
+                                      child: Container(
+                                        width: _movingWidth,
+                                        height: _blockHeight - 4,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          color: _movingColor.withOpacity(0.18),
+                                          border: Border.all(
+                                            color: _movingColor.withOpacity(
+                                              0.40,
+                                            ),
+                                            width: 1.5,
+                                          ),
+                                        ),
                                       ),
                                     ),
 
